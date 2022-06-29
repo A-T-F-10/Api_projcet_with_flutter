@@ -11,57 +11,61 @@ class NewsPage extends StatefulWidget {
 }
 
 class _NewsPageState extends State<NewsPage> {
-  NewsData m = NewsData();
+  NewsData newsData = NewsData();
 
   @override
   Widget build(BuildContext context) {
-    var mom = ModalRoute.of(context)!.settings.arguments as NewsData;
+    var nD = ModalRoute.of(context)!.settings.arguments as NewsData;
 
-    return Scaffold(
-      appBar: AppBar(),
-      // backgroundColor: Colors.black,
-      body: SafeArea(
-        child: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(colors: [
-            Colors.green,
-            Colors.black,
-          ], begin: Alignment.bottomLeft)),
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: ListView(
-            children: [
-              SizedBox(
-                height: 90,
-              ),
-
-              Text(
-                mom.title,
-                style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Image.network(mom.image),
-              SizedBox(
-                height: 40,
-              ),
-
-              Text(
-                mom.description,
-                style: TextStyle(color: Colors.white),
-              ),
-
-              SizedBox(
-                height: 30,
-              ),
-              // Link(url: mom.url,
-              // child: Text('data'),
-
-              // )
-            ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(colors: [
+              Color.fromARGB(255, 43, 76, 104),
+              Color.fromARGB(255, 49, 25, 33),
+            ])),
+          ),
+          title: Text(nD.title),
+        ),
+        // backgroundColor: Colors.black,
+        body: SafeArea(
+          child: Container(
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(colors: [
+              Color.fromARGB(255, 16, 54, 17),
+              Colors.black,
+            ], begin: Alignment.bottomLeft)),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ListView(
+              children: [
+                const SizedBox(
+                  height: 90,
+                ),
+                Text(
+                  nD.title,
+                  style: const TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Image.network(nD.image),
+                const SizedBox(
+                  height: 40,
+                ),
+                Text(
+                  nD.description,
+                  style: const TextStyle(color: Colors.white),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+              ],
+            ),
           ),
         ),
       ),

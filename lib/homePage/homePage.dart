@@ -9,9 +9,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  NewsData m = NewsData();
+  NewsData newsData = NewsData();
   List<NewsData> data = [];
-  MyRequest zff = MyRequest();
+  MyRequest myRequest = MyRequest();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,37 +19,25 @@ class _HomeState extends State<Home> {
         flexibleSpace: Container(
           decoration: const BoxDecoration(
               gradient: LinearGradient(colors: [
-            Colors.blue,
-            Colors.pink,
+            Color.fromARGB(255, 30, 61, 88),
+            Color.fromARGB(255, 112, 57, 76),
           ])),
         ),
         centerTitle: true,
-        title: const Text('NewsApi'),
-        actions: const [
-          Icon(
-            Icons.restart_alt_sharp,
-          )
-        ],
+        title: const Text('News Api'),
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: Color.fromARGB(255, 39, 39, 39),
       body: FutureBuilder(
           future: MyRequest().format(),
           builder: (context, snapshot) {
-            try {
-              data = snapshot.data as List<NewsData>;
-            } catch (e) {
-              print(e);
-            }
-
-            print(data);
-
             if (snapshot.data == null) {
               return const Center(child: CircularProgressIndicator.adaptive());
             } else {
+              data = snapshot.data as List<NewsData>;
               return ListView.builder(
                   itemCount: data.length,
                   itemBuilder: (context, index) {
-                    m = data[index];
+                    newsData = data[index];
 
                     return bulidPadding(index);
                   });
@@ -74,11 +62,11 @@ class _HomeState extends State<Home> {
       child: ListTile(
         onTap: () => bulidNewsPage(index),
         title: Text(
-          m.title,
+          newsData.title,
           style: const TextStyle(color: Colors.white),
         ),
         leading: Image.network(
-          m.image,
+          newsData.image,
           fit: BoxFit.cover,
         ),
       ),
@@ -91,11 +79,11 @@ class _HomeState extends State<Home> {
         alignment: Alignment.center,
         children: [
           Image.network(
-            m.image,
+            newsData.image,
           ),
           // Container(color: Colors.black,width: double.infinity,height: double.infinity,),
           Text(
-            m.title,
+            newsData.title,
             style: const TextStyle(
                 color: Colors.white, fontWeight: FontWeight.bold),
           )
