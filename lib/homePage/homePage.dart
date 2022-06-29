@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test_1/dataAPI/gitRoqest.dart';
 import 'package:flutter_test_1/dataAPI/modeData.dart';
 import 'package:flutter_test_1/scrane/newsPage.dart';
+import 'package:flutter_test_1/widget/drawer.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -15,6 +17,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerWidget(),
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: const BoxDecoration(
